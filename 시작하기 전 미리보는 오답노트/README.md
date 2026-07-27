@@ -256,3 +256,43 @@ var sortedScores = scores
     .ThenBy(kvp => kvp.Key);     // 2순위: 이름 오름차순
 ```
 이게 c#에서 가장 일반적인 방법이다.         
+### 이차원 리스트 다루기 
+코테에는 꼭 알아야 할게 또 있는데 바로 2차원 배열이다. 선언과 저장, 활용 방법을 알아야 문제를 풀 수 있을 것이다.
+
+근데 이미 했었으니깐 간단하게 보고 넘어가자 
+
+- 선언법
+``` C#
+int[,] grid = new int[N, M];  // N행 M열
+```
+
+- 초기화
+```c#
+// 크기만 정하고 나중에 채우기
+int[,] grid = new int[3, 3];
+
+// 선언과 동시에 값 채우기
+int[,] grid2 = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+```
+
+- 접근법
+```C#
+grid[0, 0] = 10;        // 0행 0열에 값 저장
+int value = grid[1, 2]; // 1행 2열 값 읽기
+
+// 전체 순회
+for (int i = 0; i < grid.GetLength(0); i++)      // 행
+{
+    for (int j = 0; j < grid.GetLength(1); j++)  // 열
+    {
+        Console.Write(grid[i, j] + " ");
+    }
+    Console.WriteLine();
+}
+```
+
+
