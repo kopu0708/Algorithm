@@ -224,4 +224,35 @@ Console.WriteLine(string.Join(",", sorted)); // 5,4,3,2,1
 
 이처럼 다양한 정렬방법을 알아두는 것이 중요하다.
 
-### 
+### 다중 조건 정렬 익히기
+정렬을 할때는 조건을 여러개가 필요할 때가 있다. SQLD 공부했을 때에도 정렬 조건을 여러개 주지 않았던가 
+
+파이썬에서는 튜플 기반 정렬과 딕셔너리 기반 정렬이 있다고 한다. 데이터를 튜플로 구성한 뒤 정렬 메소드를 쓰는 방식인데 
+
+C#은 아까봤던 OrderBy()에 ThenBy()를 체인으로 연결하는 방식을 쓴다.
+
+```C#
+(int, int)[] Score = new[]
+{
+    (30,40), //국어, 수학 점수 라고 치자 
+    (50, 60),
+    (70, 80)
+};
+
+var sorted = Score
+    .OrderBy(x => x.Item1)  // 1순위 국어 점수 오름차순,
+    .ThenBy(x => x.Item2);  //2순위 영어 점수 오름차순
+```
+이런 식으로 가독성 좋게 조건을 줄 수가 있다. 
+```c#
+// 딕셔너리도 방식은 동일 — KeyValuePair를 기준으로
+Dictionary<string, int> scores = new Dictionary<string, int>
+{
+    { "철수", 85 }, { "영희", 90 }, { "민수", 85 }
+};
+
+var sortedScores = scores
+    .OrderBy(kvp => kvp.Value)   // 1순위: 점수 오름차순
+    .ThenBy(kvp => kvp.Key);     // 2순위: 이름 오름차순
+```
+이게 c#에서 가장 일반적인 방법이다.         
