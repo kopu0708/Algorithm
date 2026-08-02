@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 
 class Program
 {
@@ -16,23 +17,27 @@ class Program
         
         while(find != N)
         {
-            start = 0;
-            end = N - 1;
-
-            while (start < end)
+            start = 0; end = N - 1;
+            while(start < end)
             {
-                if (start == find) { start++; continue; }
-                if (end == find) { end--; continue; }
+                if(start == find) { start++; continue; }
+                if(end == find) { end--; continue; }
 
                 if (arr[start] + arr[end] == arr[find])
                 {
-                    answer++;
+                    answer++; 
                     break;
-                }   
+                }
+
                 else if (arr[start] + arr[end] < arr[find])
+                {
                     start++;
+                }
+
                 else
+                {
                     end--;
+                }
             }
             find++;
         }
