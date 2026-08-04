@@ -25,6 +25,8 @@ stack.Push(3);
 
 Console.WriteLine(stack.Pop());  // 3 (가장 나중에 넣은 게 먼저 나옴)
 ```
+### 1.1 문제 스택으로 수열 만들기 
+
 
 ---
 
