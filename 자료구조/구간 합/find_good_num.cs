@@ -1,34 +1,45 @@
 using System;
-
-class Program
+class GoodNumberFinder
 {
-    static void Main(string[] args)
+    private int number;
+    private long[] arr;
+    private int target;
+    private int answer;
+    public int Number { get { return number; } }
+    public long[] Arr { get { return arr; } }
+    public int Target { get { return target; } }
+    public int Answer { get { return answer; } }
+
+    public GoodNumberFinder(int number, long[] arr)
     {
-        int N = int.Parse(Console.ReadLine());
-        int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), int.Parse);
+        this.number = number;
+        this.arr = arr;
+        this.target = 0;
+        this.answer = 0;
 
+    }
+
+    public int Solve()
+    {
         Array.Sort(arr);
-
-        int start = 0;
-        int end = N - 1;
-        int find = 0;
-        int answer = 0;
-        
-        while(find != N)
+        while (target < number)
         {
-            start = 0; end = N - 1;
-            while(start < end)
-            {
-                if(start == find) { start++; continue; }
-                if(end == find) { end--; continue; }
+            int start = 0;
+            int end = number - 1;
 
-                if (arr[start] + arr[end] == arr[find])
+            while (start < end)
+            {
+                if (start == target) { start++; continue; }
+                if (end == target) { end--; continue; }
+
+                long sum = arr[start] + arr[end];
+
+                if (sum == arr[start] + arr[end])
                 {
-                    answer++; 
+                    answer++;
                     break;
                 }
-
-                else if (arr[start] + arr[end] < arr[find])
+                else if (sum < arr[target])
                 {
                     start++;
                 }
@@ -38,8 +49,20 @@ class Program
                     end--;
                 }
             }
-            find++;
+
         }
-        Console.WriteLine(answer);
+        return answer;
+    }
+
+    class Program
+    {
+        static void Main()
+        {
+            int n = int.Parse(Console.ReadLine());
+            long[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), long.Parse);
+
+            GoodNumberFinder finder = new GoodNumberFinder(n, arr);
+            Console.WriteLine(finder.Solve());
+        }
     }
 }
